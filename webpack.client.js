@@ -17,7 +17,7 @@ module.exports = Object.assign({},
     },
 
     output: {
-      filename: 'bundle.js',
+      filename: '[name].[chunkhash].bundle.js',
       path: path.resolve(__dirname, 'dist/'),
     },
 
