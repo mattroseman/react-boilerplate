@@ -1,5 +1,8 @@
 {
-    "plugins": ["react-hot-loader/babel"],
+    "plugins": [
+        "react-hot-loader/babel",
+        "@loadable/babel-plugin"
+    ],
     "presets": [
         ["@babel/preset-env", {
             "useBuiltIns": "usage",

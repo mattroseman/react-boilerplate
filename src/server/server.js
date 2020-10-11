@@ -1,8 +1,9 @@
 import express from 'express';
 import path from 'path';
+import fs from 'fs';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import fs from 'fs';
+import { ChunkExtractor } from '@loadable/server';
 
 import App from '../client/components/App.js';
 
@@ -10,7 +11,9 @@ const app = express();
 
 // PRERENDER REACT HOME PAGE
 let prerenderedHTML;
-const html = ReactDOMServer.renderToString(<App />);
+const statsFile = path.resolve('dist/loadable-stats.json');
+const extractor = new ChunkExtractor({ statsFile });
+const html = ReactDOMServer.renderToString(extractor.collectChunks(<App />));
 fs.readFile('dist/index.html', 'utf8', (err, data) => {
   if (err) {
     console.error(`Something went wrong reading index.html:\n${err}`);

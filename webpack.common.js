@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -8,7 +9,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/client/index-template.html'),
       scriptLoading: 'defer'
-    })
+    }),
+    new LoadablePlugin()
   ],
 
   module: {

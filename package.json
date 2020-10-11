@@ -13,6 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "@babel/node": "^7.10.5",
+    "@loadable/babel-plugin": "^5.13.2",
+    "@loadable/component": "^5.13.2",
+    "@loadable/server": "^5.13.2",
+    "@loadable/webpack-plugin": "^5.13.0",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
     "html-webpack-plugin": "^4.5.0",

@@ -1,6 +1,7 @@
 import React from 'react';
+import loadable from '@loadable/component';
 
-import ChildComponent from './ChildComponent.js';
+const ChildComponent = loadable(() => import('./ChildComponent.js'));
 
 import './App.scss';
 
