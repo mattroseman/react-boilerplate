@@ -1,12 +1,13 @@
 const path = require('path');
-
-const PROD_ENV = process.env.NODE_ENV === 'production';
+const webpack = require('webpack');
 
 module.exports = {
   entry: path.join(__dirname, 'src/client/index.js'),
-  mode: PROD_ENV ? 'production' : 'development',
+  mode: 'development',
 
   resolve: { extensions: ['*', '.js', '.jsx'] },
+
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 
   module: {
     rules: [
@@ -27,14 +28,18 @@ module.exports = {
     ]
   },
 
-  optimization: {
-    minimize: PROD_ENV ? true : false
-  },
-
   output: {
     path: path.resolve(__dirname, 'dist/'),
     publicPath: '/',
     filename: 'bundle.js'
+  },
+
+  devServer: {
+    contentBase: path.join(__dirname, 'src/client/public/'),
+    port: 3000,
+    publicPath: 'http://localhost:3000/',
+    hotOnly: true,
+    disableHostCheck: true
   },
 
   devtool: 'source-map'
