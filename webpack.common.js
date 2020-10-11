@@ -2,14 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
-const PROD_ENV = process.env.NODE_ENV === 'production';
-
 module.exports = {
-  entry: path.join(__dirname, 'src/client/index.js'),
-  mode: PROD_ENV ? 'production' : 'development',
-
-  resolve: { extensions: ['*', '.js', '.jsx'] },
-
   plugins: [
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
@@ -36,16 +29,4 @@ module.exports = {
       }
     ]
   },
-
-  optimization: {
-    minimize: PROD_ENV ? true : false
-  },
-
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist/'),
-    publicPath: '/',
-  },
-
-  devtool: 'source-map'
-};
+}

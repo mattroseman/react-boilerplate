@@ -12,7 +12,7 @@ import './global.scss';
 
 const HotApp = hot(App);
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <HotApp />,
   document.getElementById('root')
 );
