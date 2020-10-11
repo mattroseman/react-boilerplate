@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -7,7 +8,12 @@ module.exports = {
 
   resolve: { extensions: ['*', '.js', '.jsx'] },
 
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/client/index-template.html')
+    })
+  ],
 
   module: {
     rules: [
@@ -35,7 +41,7 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: path.join(__dirname, 'src/client/public/'),
+    contentBase: path.join(__dirname, 'dist/'),
     port: 3000,
     publicPath: 'http://localhost:3000/',
     hotOnly: true,

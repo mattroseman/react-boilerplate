@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 const PROD_ENV = process.env.NODE_ENV === 'production';
@@ -7,6 +8,12 @@ module.exports = {
   mode: PROD_ENV ? 'production' : 'development',
 
   resolve: { extensions: ['*', '.js', '.jsx'] },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/client/index-template.html')
+    })
+  ],
 
   module: {
     rules: [
@@ -32,9 +39,9 @@ module.exports = {
   },
 
   output: {
+    filename: '[name].[chunkhash].bundle.js',
     path: path.resolve(__dirname, 'dist/'),
     publicPath: '/',
-    filename: 'bundle.js'
   },
 
   devtool: 'source-map'
