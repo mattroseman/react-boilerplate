@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 const PROD_ENV = process.env.NODE_ENV === 'production';
@@ -10,8 +11,10 @@ module.exports = {
   resolve: { extensions: ['*', '.js', '.jsx'] },
 
   plugins: [
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/client/index-template.html')
+      template: path.join(__dirname, 'src/client/index-template.html'),
+      scriptLoading: 'defer'
     })
   ],
 
@@ -25,7 +28,7 @@ module.exports = {
       },
       {
         test: /\.s?[ac]ss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
