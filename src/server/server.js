@@ -14,12 +14,16 @@ let prerenderedHTML;
 const statsFile = path.resolve('dist/loadable-stats.json');
 const extractor = new ChunkExtractor({ statsFile });
 const html = ReactDOMServer.renderToString(extractor.collectChunks(<App />));
-fs.readFile('dist/index.html', 'utf8', (err, data) => {
+const scriptTags = extractor.getScriptTags();
+const styleTags = extractor.getStyleTags();
+fs.readFile('public/index.html', 'utf8', (err, data) => {
   if (err) {
     console.error(`Something went wrong reading index.html:\n${err}`);
   }
 
-  prerenderedHTML = data.replace(/<div id="root"><\/div>/, `<div id="root">${html}</div>`);
+  prerenderedHTML = data.replace(/<div id="root"><\/div>/, `<div id="root">${html}</div>`)
+    .replace(/<\/head>/, `${scriptTags}</head>`)
+    .replace(/<\/head>/, `${styleTags}</head>`);
 });
 
 // SETUP PATHS
