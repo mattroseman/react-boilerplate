@@ -1,8 +1,12 @@
+import 'core-js';
+import 'regenerator-runtime/runtime';
+
 import React from 'react';
 import loadable from '@loadable/component';
 
 const ChildComponent = loadable(() => import('./ChildComponent.js'));
 
+import '../global.scss';
 import './App.scss';
 
 

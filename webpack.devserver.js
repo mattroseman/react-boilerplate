@@ -3,7 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: path.join(__dirname, 'src/client/index.js'),
+  entry: path.join(__dirname, 'src/client/hot-reload-index.js'),
   mode: 'development',
 
   resolve: { extensions: ['*', '.js', '.jsx'] },
@@ -11,7 +11,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/client/index-template.html')
+      template: path.join(__dirname, 'public/index.html')
     })
   ],
 
@@ -41,7 +41,7 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: path.join(__dirname, 'dist/'),
+    contentBase: path.join(__dirname, 'public/'),
     port: 3000,
     publicPath: 'http://localhost:3000/',
     hotOnly: true,
