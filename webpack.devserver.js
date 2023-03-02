@@ -35,11 +35,14 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: path.join(__dirname, 'src/client/public/'),
+    static: {
+      directory: path.join(__dirname, 'src/client/public/'),
+    },
     port: 3000,
-    publicPath: 'http://localhost:3000/',
-    hotOnly: true,
-    disableHostCheck: true
+    allowedHosts: 'all',
+    devMiddleware: {
+      publicPath: 'http://localhost:3000/'
+    }
   },
 
   devtool: 'source-map'
